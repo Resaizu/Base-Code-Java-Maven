@@ -36,8 +36,8 @@ Create a new database named course_project, or use a database of your choice:
 ### Step 4: Import Project
 Import the project into your preferred IDE that supports Maven projects (e.g., Apache Netbeans, IntelliJ IDEA, Eclipse).
 
-Contributing
+### Contributing
 This project is primarily for educational purposes and is not well maintained. But Feel free to fork the repository, make improvements, and submit pull requests.
 
-License
+### License
 This project is open source and available under the [MIT License](License).
