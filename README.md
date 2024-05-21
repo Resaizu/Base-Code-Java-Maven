@@ -40,4 +40,4 @@ Import the project into your preferred IDE that supports Maven projects (e.g., A
 This project is primarily for educational purposes and is not well maintained. But Feel free to fork the repository, make improvements, and submit pull requests.
 
 ### License
-This project is open source and available under the [MIT License](License).
+This project is open source and available under the [MIT License](LICENSE).
