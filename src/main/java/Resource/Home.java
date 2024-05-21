@@ -6,7 +6,7 @@ package Resource;
 
 /**
  *
- * @author TATS
+ * @author Resaizu
  */
 public class Home extends javax.swing.JFrame {
 
