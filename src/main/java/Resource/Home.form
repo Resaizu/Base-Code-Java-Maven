@@ -25,9 +25,9 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
-              <Component id="Login" min="-2" pref="290" max="-2" attributes="0"/>
+              <Component id="login" min="-2" pref="290" max="-2" attributes="0"/>
               <EmptySpace pref="113" max="32767" attributes="0"/>
-              <Component id="Register" min="-2" pref="290" max="-2" attributes="0"/>
+              <Component id="register" min="-2" pref="290" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
@@ -44,8 +44,8 @@
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="Register" alignment="3" min="-2" pref="87" max="-2" attributes="0"/>
-                  <Component id="Login" alignment="3" min="-2" pref="87" max="-2" attributes="0"/>
+                  <Component id="register" alignment="3" min="-2" pref="87" max="-2" attributes="0"/>
+                  <Component id="login" alignment="3" min="-2" pref="87" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="348" max="32767" attributes="0"/>
           </Group>
@@ -53,7 +53,7 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JButton" name="Register">
+    <Component class="javax.swing.JButton" name="register">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="36" style="0"/>
@@ -61,10 +61,10 @@
         <Property name="text" type="java.lang.String" value="Register"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="RegisterActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="registerActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="Login">
+    <Component class="javax.swing.JButton" name="login">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="36" style="0"/>
@@ -72,7 +72,7 @@
         <Property name="text" type="java.lang.String" value="Login"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="LoginActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="loginActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">

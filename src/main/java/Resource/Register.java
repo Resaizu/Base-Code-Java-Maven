@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author TATS
+ * @author Resaizu
  */
 public class Register extends javax.swing.JFrame {
 
@@ -34,64 +34,64 @@ public class Register extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Name = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
+        name = new javax.swing.JTextField();
+        nameLabel = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        Username = new javax.swing.JTextField();
+        username = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        RegisterButton = new javax.swing.JButton();
-        BackButton = new javax.swing.JButton();
-        NameErrorLabel = new javax.swing.JLabel();
-        UsernameErrorLabel = new javax.swing.JLabel();
-        PasswordErrorLabel = new javax.swing.JLabel();
-        Password = new javax.swing.JPasswordField();
-        MessageLabel = new javax.swing.JLabel();
+        registerButton = new javax.swing.JButton();
+        backButton = new javax.swing.JButton();
+        nameErrorLabel = new javax.swing.JLabel();
+        usernameErrorLabel = new javax.swing.JLabel();
+        passwordErrorLabel = new javax.swing.JLabel();
+        password = new javax.swing.JPasswordField();
+        messageLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        Name.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        name.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel1.setText("Name");
+        nameLabel.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        nameLabel.setText("Name");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel2.setText("Username");
 
-        Username.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        username.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel3.setText("Password");
 
-        RegisterButton.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        RegisterButton.setText("Register");
-        RegisterButton.addActionListener(new java.awt.event.ActionListener() {
+        registerButton.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        registerButton.setText("Register");
+        registerButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RegisterButtonActionPerformed(evt);
+                registerButtonActionPerformed(evt);
             }
         });
 
-        BackButton.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        BackButton.setText("Back");
-        BackButton.addActionListener(new java.awt.event.ActionListener() {
+        backButton.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        backButton.setText("Back");
+        backButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BackButtonActionPerformed(evt);
+                backButtonActionPerformed(evt);
             }
         });
 
-        NameErrorLabel.setForeground(new java.awt.Color(255, 0, 0));
-        NameErrorLabel.setText(" ");
+        nameErrorLabel.setForeground(new java.awt.Color(255, 0, 0));
+        nameErrorLabel.setText(" ");
 
-        UsernameErrorLabel.setForeground(new java.awt.Color(255, 0, 0));
-        UsernameErrorLabel.setText(" ");
+        usernameErrorLabel.setForeground(new java.awt.Color(255, 0, 0));
+        usernameErrorLabel.setText(" ");
 
-        PasswordErrorLabel.setForeground(new java.awt.Color(255, 0, 51));
-        PasswordErrorLabel.setText(" ");
+        passwordErrorLabel.setForeground(new java.awt.Color(255, 0, 51));
+        passwordErrorLabel.setText(" ");
 
-        Password.setText("jPasswordField1");
+        password.setText("jPasswordField1");
 
-        MessageLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        MessageLabel.setForeground(new java.awt.Color(51, 255, 51));
-        MessageLabel.setText(" ");
+        messageLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        messageLabel.setForeground(new java.awt.Color(51, 255, 51));
+        messageLabel.setText(" ");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -101,81 +101,81 @@ public class Register extends javax.swing.JFrame {
                 .addContainerGap(138, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(RegisterButton, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(registerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(324, 324, 324))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
                             .addComponent(jLabel2)
-                            .addComponent(Username, javax.swing.GroupLayout.PREFERRED_SIZE, 552, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1)
-                            .addComponent(Name, javax.swing.GroupLayout.PREFERRED_SIZE, 552, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(NameErrorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 505, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(UsernameErrorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 505, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(PasswordErrorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 505, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Password, javax.swing.GroupLayout.PREFERRED_SIZE, 552, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 552, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nameLabel)
+                            .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 552, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nameErrorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 505, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(usernameErrorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 505, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(passwordErrorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 505, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 552, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(110, 110, 110))))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(48, 48, 48)
-                        .addComponent(BackButton, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(187, 187, 187)
-                        .addComponent(MessageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 463, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(messageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 463, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(41, 41, 41)
-                .addComponent(BackButton)
+                .addComponent(backButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel1)
+                .addComponent(nameLabel)
                 .addGap(5, 5, 5)
-                .addComponent(NameErrorLabel)
+                .addComponent(nameErrorLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Name, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addGap(10, 10, 10)
-                .addComponent(UsernameErrorLabel)
+                .addComponent(usernameErrorLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Username, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
                 .addGap(5, 5, 5)
-                .addComponent(PasswordErrorLabel)
+                .addComponent(passwordErrorLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(Password, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(MessageLabel)
+                .addComponent(messageLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(RegisterButton, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(registerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(22, 22, 22))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         Home HomeFrame = new Home();
         HomeFrame.setVisible(true);
 
         dispose();
-    }//GEN-LAST:event_BackButtonActionPerformed
+    }//GEN-LAST:event_backButtonActionPerformed
 
-    private void RegisterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegisterButtonActionPerformed
-        if(this.Name.getText().isBlank()) this.NameErrorLabel.setText("Name is Required");
-        if(this.Username.getText().isBlank()) this.UsernameErrorLabel.setText("Username is Required");
-        if(this.Password.getText().isBlank()) this.PasswordErrorLabel.setText("Password is Required");
+    private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
+        if(this.name.getText().isBlank()) this.nameErrorLabel.setText("Name is Required");
+        if(this.username.getText().isBlank()) this.usernameErrorLabel.setText("Username is Required");
+        if(this.password.getText().isBlank()) this.passwordErrorLabel.setText("Password is Required");
         
         if(
-            this.Name.getText().isBlank()
-            || this.Username.getText().isBlank()
-            || this.Password.getText().isBlank()
+            this.name.getText().isBlank()
+            || this.username.getText().isBlank()
+            || this.password.getText().isBlank()
         ) {
-            this.MessageLabel.setText("");
+            this.messageLabel.setText("");
             return;
         }
         
@@ -188,31 +188,31 @@ public class Register extends javax.swing.JFrame {
 //        }
         
         Map<String, Object> Request = new HashMap<>();
-        Request.put("name", this.Name.getText());
-        Request.put("username", this.Username.getText());
-        Request.put("password", this.Password.getText());
+        Request.put("name", this.name.getText());
+        Request.put("username", this.username.getText());
+        Request.put("password", this.password.getText());
         
         try {
-            if(AuthController.Register(Request)) {
-                this.Name.setText("");
-                this.Username.setText("");
-                this.Password.setText("");
+            if(AuthController.register(Request)) {
+                this.name.setText("");
+                this.username.setText("");
+                this.password.setText("");
                 
-                this.NameErrorLabel.setText("");
-                this.UsernameErrorLabel.setText("");
-                this.PasswordErrorLabel.setText("");
+                this.nameErrorLabel.setText("");
+                this.usernameErrorLabel.setText("");
+                this.passwordErrorLabel.setText("");
                 
-                this.MessageLabel.setText("Registration Success!");
-                this.MessageLabel.setForeground(Color.GREEN);
+                this.messageLabel.setText("Registration Success!");
+                this.messageLabel.setForeground(Color.GREEN);
             }
             else {
-                this.MessageLabel.setText("Username Already Exist");
-                this.MessageLabel.setForeground(Color.RED);
+                this.messageLabel.setText("Username Already Exist");
+                this.messageLabel.setForeground(Color.RED);
             }
         } catch (SQLException ex) {
             Logger.getLogger(Register.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_RegisterButtonActionPerformed
+    }//GEN-LAST:event_registerButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -250,17 +250,17 @@ public class Register extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BackButton;
-    private javax.swing.JLabel MessageLabel;
-    private javax.swing.JTextField Name;
-    private javax.swing.JLabel NameErrorLabel;
-    private javax.swing.JPasswordField Password;
-    private javax.swing.JLabel PasswordErrorLabel;
-    private javax.swing.JButton RegisterButton;
-    private javax.swing.JTextField Username;
-    private javax.swing.JLabel UsernameErrorLabel;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton backButton;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel messageLabel;
+    private javax.swing.JTextField name;
+    private javax.swing.JLabel nameErrorLabel;
+    private javax.swing.JLabel nameLabel;
+    private javax.swing.JPasswordField password;
+    private javax.swing.JLabel passwordErrorLabel;
+    private javax.swing.JButton registerButton;
+    private javax.swing.JTextField username;
+    private javax.swing.JLabel usernameErrorLabel;
     // End of variables declaration//GEN-END:variables
 }

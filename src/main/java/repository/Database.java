@@ -9,7 +9,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -18,17 +17,23 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author TATSING_DENNIS
+ * @author Resaizu
  */
 public class Database {
-    private String TableName;
-    private String WhereQuery = "";
+    private String tableName;
+    private String whereQuery = "";
+    private String whereData = "";
     
-    public Database(String TableName) {
-       this.TableName = TableName; 
+    public Database(String tableName) {
+       this.tableName = tableName; 
     }
     
-    private Connection GetConnection() {
+    /**
+     * Connection From Database
+     * 
+     * @return 
+     */
+    private Connection getConnection() {
         try {
             String url = "jdbc:mysql://localhost:3306/course_project";
             String username = "root";
@@ -41,13 +46,19 @@ public class Database {
         return null;
     }
     
-    public boolean Create(Map<String, Object> UserData) {
-        Connection conn = this.GetConnection();
+    /**
+     * Create Another Row of Data
+     * 
+     * @param data
+     * @return 
+     */
+    public boolean create(Map<String, Object> data) {
+        Connection conn = getConnection();
         
         StringBuilder columns = new StringBuilder();
         StringBuilder values = new StringBuilder();
         List<Object> params = new ArrayList<>();
-        for (Map.Entry<String, Object> entry : UserData.entrySet()) {
+        for (Map.Entry<String, Object> entry : data.entrySet()) {
             if (columns.length() > 0) {
                 columns.append(", ");
                 values.append(", ");
@@ -57,68 +68,146 @@ public class Database {
             params.add(entry.getValue());
         }
         try {
-            String sql = "INSERT INTO "+ this.TableName +" (" + columns.toString() + ") VALUES (" + values.toString() + ")";
-            PreparedStatement ps = conn.prepareStatement(sql);
+            String Query = "INSERT INTO " + this.tableName + " (" + columns.toString() + ") VALUES (" + values.toString() + ")";
+            PreparedStatement pStmt = conn.prepareStatement(Query);
             for (int i = 0; i < params.size(); i++) {
-                ps.setObject(i + 1, params.get(i));
+                pStmt.setObject(i + 1, params.get(i));
             }
-            int result = ps.executeUpdate();
-            ps.close();
+            int result = pStmt.executeUpdate();
+            pStmt.close();
             return result > 0;
         } catch (SQLException e) {
-            e.printStackTrace();
             return false;
         }
     }
     
-    public Database Where(String ColumnName, String Value) {
-        if (!WhereQuery.isEmpty()) {
-            WhereQuery += " AND ";
+    /**
+     * Update Specified Column's/s Data
+     * 
+     * @param data
+     * @param id
+     * @return 
+     */
+    public boolean update(Map<String, Object> data, int id) {
+        Connection conn = getConnection();
+        
+        StringBuilder setClause = new StringBuilder();
+        List<Object> params = new ArrayList<>();
+        for (Map.Entry<String, Object> entry : data.entrySet()) {
+            if (setClause.length() > 0) {
+                setClause.append(", ");
+            }
+            setClause.append(entry.getKey()).append(" = ?");
+            params.add(entry.getValue());
+        }
+        params.add(id);
+        
+        try {
+            String query = "UPDATE " + this.tableName + " SET " + setClause.toString() + " WHERE id = ?";
+            PreparedStatement pStmt = conn.prepareStatement(query);
+            for (int i = 0; i < params.size(); i++) {
+                pStmt.setObject(i + 1, params.get(i));
+            }
+            int result = pStmt.executeUpdate();
+            pStmt.close();
+            return result > 0;
+        } catch (SQLException e) {
+            return false;
+        }
+    }
+    
+    /**
+     * Delete the Entire Row of Data
+     * 
+     * @param id
+     * @return 
+     */
+    public boolean delete(int id) {
+        Connection conn = getConnection();
+        String query = "Delete FROM " + this.tableName + " WHERE id = ?";
+        
+        try {
+            PreparedStatement pStmt = conn.prepareStatement(query);
+            pStmt.setInt(1, id);
+            int result = pStmt.executeUpdate();
+            pStmt.close();
+            return result > 0;
+        } catch (SQLException e) {
+            return false;
+        }
+    }
+    
+    /**
+     * Find a Data Using Column Name
+     * 
+     * @param columnName
+     * @param value
+     * @return 
+     */
+    public Database where(String columnName, String value) {
+        if (!whereQuery.isEmpty()) {
+            whereQuery += " AND ";
         }
         else {
-            WhereQuery += "WHERE ";
+            whereQuery += "WHERE ";
         }
         
-        WhereQuery += ColumnName + " = '" + Value + "'";
+        whereQuery += columnName + " = ?";
+        whereQuery += value +",";
         return this;
     }
     
-    public Database Where(String ColumnName, String Value, String Comparison) {
-        if (!WhereQuery.isEmpty()) {
-            WhereQuery += " AND ";
+    /**
+     * @Overload
+     * Find a Data Using Column Name and A Comparison
+     * 
+     * @param columnName
+     * @param value
+     * @param comparison
+     * @return 
+     */
+    public Database where(String columnName, String value, String comparison) {
+        if (!whereQuery.isEmpty()) {
+            whereQuery += " AND ";
         }
         else {
-            WhereQuery += "WHERE ";
+            whereQuery += "WHERE ";
         }
         
-        WhereQuery += ColumnName + " " + Comparison + " '" + Value + "'";
+        whereQuery += columnName + " " + comparison + " ?";
+        whereQuery += value + ",";
         return this;
     }
-
-//    public Database orderBy(String orderBy) {
-//        orderByQuery = orderBy;
-//        return this;
-//    }
-//
-//    public Database limit(int limit) {
-//        this.limit = limit;
-//        return this;
-//    }
     
-    public List<Map<String, Object>> Get() throws SQLException {
+    /**
+     * Get All Data From a Table
+     * 
+     * @return
+     * @throws SQLException 
+     */
+    public List<Map<String, Object>> get() throws SQLException {
         Connection conn = null;
-        Statement stmt = null;
+        PreparedStatement pStmt = null;
         ResultSet rs = null;
-        List<Map<String, Object>> result = new ArrayList<>();
+        List<Map<String, Object>> Result = new ArrayList<>();
 
         try {
-            conn = this.GetConnection();
-            stmt = conn.createStatement();
-
-            String sql = "SELECT * FROM " + this.TableName + " " + WhereQuery.toString();
-            this.WhereQuery = "";
-            System.out.println(sql);
-            rs = stmt.executeQuery(sql);
+            conn = getConnection();
+            String Query = "SELECT * FROM " + this.tableName + " " + whereQuery;
+            
+            pStmt = conn.prepareStatement(Query);
+            if(!whereData.isEmpty()) {
+                String[] WhereStrings = whereData.split(",");
+                for (int i = 0; i < WhereStrings.length; i++) {
+                    if(!WhereStrings[i].isEmpty()) {
+                        pStmt.setString(i + 1, WhereStrings[i]);
+                    }
+                }
+            }
+            
+            whereQuery = "";
+            whereData = "";
+            rs = pStmt.executeQuery();
 
             ResultSetMetaData metaData = rs.getMetaData();
             int columnCount = metaData.getColumnCount();
@@ -130,19 +219,19 @@ public class Database {
                     Object value = rs.getObject(i);
                     row.put(columnName, value);
                 }
-                result.add(row);
+                Result.add(row);
             }
         } finally {
             if (rs != null) {
                 rs.close();
             }
-            if (stmt != null) {
-                stmt.close();
+            if (pStmt != null) {
+                pStmt.close();
             }
             if (conn != null) {
                 conn.close();
             }
         }
-        return result;
+        return Result;
     }
 }

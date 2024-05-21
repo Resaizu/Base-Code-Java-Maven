@@ -15,7 +15,7 @@ import javax.swing.DefaultListModel;
 
 /**
  *
- * @author TATS
+ * @author Resaizu
  */
 public class Dashboard extends javax.swing.JFrame {
 
@@ -40,7 +40,8 @@ public class Dashboard extends javax.swing.JFrame {
         userList = new javax.swing.JList<>();
         label = new javax.swing.JLabel();
         search = new javax.swing.JTextField();
-        SearchButton = new javax.swing.JButton();
+        searchButton = new javax.swing.JButton();
+        logout = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -59,28 +60,31 @@ public class Dashboard extends javax.swing.JFrame {
             }
         });
 
-        SearchButton.setText("Search");
-        SearchButton.addActionListener(new java.awt.event.ActionListener() {
+        searchButton.setText("Search");
+        searchButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SearchButtonActionPerformed(evt);
+                searchButtonActionPerformed(evt);
+            }
+        });
+
+        logout.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        logout.setText("Logout");
+        logout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutActionPerformed(evt);
             }
         });
 
         jDesktopPane1.setLayer(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(label, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(search, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(SearchButton, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(searchButton, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(logout, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
         jDesktopPane1Layout.setHorizontalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(search, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(SearchButton)
-                .addGap(35, 35, 35))
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
                 .addGap(137, 137, 137)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 529, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -89,14 +93,25 @@ public class Dashboard extends javax.swing.JFrame {
                 .addGap(366, 366, 366)
                 .addComponent(label)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(logout, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                        .addComponent(search, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(searchButton)))
+                .addGap(35, 35, 35))
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
-                .addGap(0, 450, Short.MAX_VALUE)
+                .addGap(46, 46, 46)
+                .addComponent(logout, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 346, Short.MAX_VALUE)
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(search, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(SearchButton))
+                    .addComponent(searchButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(label)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -117,17 +132,24 @@ public class Dashboard extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void SearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchButtonActionPerformed
+    private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
         try {
-            this.GetUsers();
+            this.getUsers();
         } catch (SQLException ex) {
             Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_SearchButtonActionPerformed
+    }//GEN-LAST:event_searchButtonActionPerformed
 
     private void searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_searchActionPerformed
+
+    private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
+        Home HomeFrame = new Home();
+        HomeFrame.setVisible(true);
+
+        dispose();
+    }//GEN-LAST:event_logoutActionPerformed
 
     /**
      * @param args the command line arguments
@@ -162,7 +184,7 @@ public class Dashboard extends javax.swing.JFrame {
                 Dashboard dashboard = new Dashboard();
 
                 try {
-                    dashboard.GetUsers();
+                    dashboard.getUsers();
                 } catch (SQLException ex) {
                     ex.printStackTrace();
                 }
@@ -172,11 +194,11 @@ public class Dashboard extends javax.swing.JFrame {
         });
     }
     
-    public void GetUsers() throws SQLException {
+    public void getUsers() throws SQLException {
         Map<String, Object> Request = new HashMap<>();
         Request.put("search", this.search.getText());
         try {
-            List<Map<String, Object>> users = UserController.Index(Request);
+            List<Map<String, Object>> users = UserController.index(Request);
 
             DefaultListModel<String> listModel = new DefaultListModel<>();
 
@@ -192,11 +214,12 @@ public class Dashboard extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton SearchButton;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel label;
+    private javax.swing.JButton logout;
     private javax.swing.JTextField search;
+    private javax.swing.JButton searchButton;
     private javax.swing.JList<String> userList;
     // End of variables declaration//GEN-END:variables
 }
