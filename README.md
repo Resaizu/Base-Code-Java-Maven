@@ -30,8 +30,9 @@ Download the MySQL Connector for Java (version 8.0.17) from:
 
 ### Step 3: Database Configuration
 If using MySQL or XAMPP, ensure the MySQL service is running.
-Create a new database named course_project, or use a database of your choice:
-- If you choose a different database, update the connection settings in the Repository/Database > find "**course_project**" and replace it using your database name.
+- Create a new database named course_project, or use a database of your choice:
+  - If you choose a different database, update the connection settings in the Repository/Database > find "**course_project**" and replace it using your database name.
+- Create **users** table with 6 columns (primary int id, varchar name, varchar username, varchar password, timestamp created_at default now, timestamp updated_at default now)
 
 ### Step 4: Import Project
 Import the project into your preferred IDE that supports Maven projects (e.g., Apache Netbeans, IntelliJ IDEA, Eclipse).
