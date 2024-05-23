@@ -5,7 +5,7 @@ This project provides a **basic implementation** of a login, registration, and l
 ## Prerequisites
 
 Before you start using this project, make sure you have the following installed:
-- **Java JDK** (Java Development Kit) If not working, try using **Java version "22.0.1"**
+- **Java JDK** (Java Development Kit) If other versions are not working, try using **Java version "22.0.1"**
 - **Maven** for dependency management
 - **MySQL** or **XAMPP** for the database
 - **Preferred IDE - Apache Netbeans**
