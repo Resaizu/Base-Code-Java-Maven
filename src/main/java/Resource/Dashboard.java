@@ -6,12 +6,15 @@ package Resource;
 
 import controller.UserController;
 import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -36,21 +39,14 @@ public class Dashboard extends javax.swing.JFrame {
     private void initComponents() {
 
         jDesktopPane1 = new javax.swing.JDesktopPane();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        userList = new javax.swing.JList<>();
         label = new javax.swing.JLabel();
         search = new javax.swing.JTextField();
         searchButton = new javax.swing.JButton();
         logout = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        userDataTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        userList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane1.setViewportView(userList);
 
         label.setText("Users");
 
@@ -75,24 +71,29 @@ public class Dashboard extends javax.swing.JFrame {
             }
         });
 
-        jDesktopPane1.setLayer(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        userDataTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(userDataTable);
+
         jDesktopPane1.setLayer(label, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(search, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(searchButton, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(logout, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(jScrollPane2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
         jDesktopPane1Layout.setHorizontalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                .addGap(137, 137, 137)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 529, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 134, Short.MAX_VALUE))
-            .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                .addGap(366, 366, 366)
-                .addComponent(label)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -102,20 +103,30 @@ public class Dashboard extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(searchButton)))
                 .addGap(35, 35, 35))
+            .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                        .addGap(366, 366, 366)
+                        .addComponent(label))
+                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                        .addGap(165, 165, 165)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(183, Short.MAX_VALUE))
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
                 .addGap(46, 46, 46)
                 .addComponent(logout, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 346, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 284, Short.MAX_VALUE)
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(search, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(searchButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(label)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -195,19 +206,42 @@ public class Dashboard extends javax.swing.JFrame {
     }
     
     public void getUsers() throws SQLException {
-        Map<String, Object> Request = new HashMap<>();
-        Request.put("search", this.search.getText());
+        Map<String, Object> request = new HashMap<>();
+        request.put("search", this.search.getText());
         try {
-            List<Map<String, Object>> users = UserController.index(Request);
+            List<Map<String, Object>> users = UserController.index(request);
+            
+            List<String> orderedColumnNames = Arrays.asList(
+                "username", "name", "created_at", "updated_at"
+            );
+            
+            Map<String, String> columnDisplayNames = new HashMap<>();
+            columnDisplayNames.put("username", "Username");
+            columnDisplayNames.put("name", "Name");
+            columnDisplayNames.put("created_at", "Registered At");
+            columnDisplayNames.put("updated_at", "Updated At");
 
-            DefaultListModel<String> listModel = new DefaultListModel<>();
-
-            for (Map<String, Object> user : users) {
-                String name = (String) user.get("name");
-                listModel.addElement(name);
+            if (users == null || users.isEmpty()) {
+                userDataTable.setModel(new DefaultTableModel());
+                return;
             }
 
-            userList.setModel(listModel);
+            Vector<Vector<Object>> dataVector = new Vector<>();
+            Vector<String> columnNames = new Vector<>(orderedColumnNames.size());
+            for (String columnName : orderedColumnNames) {
+                columnNames.add(columnDisplayNames.get(columnName));
+            }
+            for (Map<String, Object> user : users) {
+                Vector<Object> rowVector = new Vector<>(orderedColumnNames.size());
+                for (String columnName : orderedColumnNames) {
+                    Object value = user.get(columnName);
+                    rowVector.add(value);
+                }
+                dataVector.add(rowVector);
+            }
+
+            DefaultTableModel model = new DefaultTableModel(dataVector, columnNames);
+            userDataTable.setModel(model);
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
@@ -215,11 +249,11 @@ public class Dashboard extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane jDesktopPane1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel label;
     private javax.swing.JButton logout;
     private javax.swing.JTextField search;
     private javax.swing.JButton searchButton;
-    private javax.swing.JList<String> userList;
+    private javax.swing.JTable userDataTable;
     // End of variables declaration//GEN-END:variables
 }

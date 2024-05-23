@@ -23,8 +23,9 @@ public class UserController {
      * @throws SQLException 
      */
     public static List<Map<String, Object>> index(Map<String, Object> request) throws SQLException {
-        Object Search = request.get("search");
-        return User.DB.where("name", "%" + Search + "%", "LIKE").get();
+        Object search = request.get("search");
+        return User.DB.where("name", "%" + search + "%", "LIKE")
+                .orWhere("username", "%" + search + "%", "LIKE").get();
     }
     
     /**

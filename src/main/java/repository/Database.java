@@ -152,8 +152,8 @@ public class Database {
             whereQuery += "WHERE ";
         }
         
-        whereQuery += columnName + " = ?";
-        whereQuery += value +",";
+        whereQuery += columnName + " = BINARY ?";
+        whereData += value +",";
         return this;
     }
     
@@ -175,7 +175,38 @@ public class Database {
         }
         
         whereQuery += columnName + " " + comparison + " ?";
-        whereQuery += value + ",";
+        whereData += value + ",";
+        return this;
+    }
+    
+    /**
+     * 
+     * 
+     * @param columnName
+     * @param value
+     * @return 
+     */
+    public Database orWhere(String columnName, String value) {
+        if (whereData.isEmpty()) {
+            throw new IllegalStateException("orWhere() called without where() clause.");
+        } else {
+            whereQuery += " OR ";
+        }
+        
+        whereQuery += columnName + " = BINARY ?";
+        whereData += value +",";
+        return this;
+    }
+    
+    public Database orWhere(String columnName, String value, String comparison) {
+        if (whereData.isEmpty()) {
+            throw new IllegalStateException("orWhere() called without where() clause.");
+        } else {
+            whereQuery += " OR ";
+        }
+        
+        whereQuery += columnName + " " + comparison + " ?";
+        whereData += value + ",";
         return this;
     }
     
@@ -193,9 +224,9 @@ public class Database {
 
         try {
             conn = getConnection();
-            String Query = "SELECT * FROM " + this.tableName + " " + whereQuery;
+            String query = "SELECT * FROM " + this.tableName + " " + whereQuery;
             
-            pStmt = conn.prepareStatement(Query);
+            pStmt = conn.prepareStatement(query);
             if(!whereData.isEmpty()) {
                 String[] WhereStrings = whereData.split(",");
                 for (int i = 0; i < WhereStrings.length; i++) {
@@ -204,7 +235,6 @@ public class Database {
                     }
                 }
             }
-            
             whereQuery = "";
             whereData = "";
             rs = pStmt.executeQuery();

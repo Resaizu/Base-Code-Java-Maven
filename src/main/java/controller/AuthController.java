@@ -19,16 +19,16 @@ public class AuthController {
     /**
      * Login a User
      * 
-     * @param Username
-     * @param Password
+     * @param username
+     * @param password
      * @return
      * @throws SQLException 
      */
-    public static boolean login(String Username, String Password) throws SQLException {
+    public static boolean login(String username, String password) throws SQLException {
         AuthController Auth = new AuthController();
         
-        List<Map<String, Object>> UserData = User.DB.where("username", Username)
-                .where("password", Password).get();
+        List<Map<String, Object>> UserData = User.DB.where("username", username)
+                .where("password", password).get();
         
         if (!UserData.isEmpty()) {
             Auth.IsLoggedIn = true;
@@ -42,17 +42,17 @@ public class AuthController {
     /**
      * Register a User
      * 
-     * @param Request
+     * @param request
      * @return
      * @throws SQLException 
      */
-    public static boolean register(Map<String, Object> Request) throws SQLException {
+    public static boolean register(Map<String, Object> request) throws SQLException {
         if(
-            !User.DB.where("username", Request.get("username").toString())
+            !User.DB.where("username", request.get("username").toString())
                 .get().isEmpty()
         ) {
             return false;
         }
-        return User.DB.create(Request);
+        return User.DB.create(request);
     }
 }
