@@ -33,7 +33,7 @@ Download the MySQL Connector for Java (version 8.0.17) from:
 - Extract the ZIP file and add the .jar file to your project’s library or configure it in your IDE to include it in the build path.
 
 ### Step 3: Database Configuration
-If using MySQL or XAMPP, ensure the MySQL service is running.
+Ensure the MySQL service is running.
 - Create a new database named course_project, or use a database of your choice:
   - If you choose a different database, update the connection settings in the Repository/Database > find "**course_project**" and replace it using your database name.
 - Create users table manually or use this:
