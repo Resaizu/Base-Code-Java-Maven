@@ -14,4 +14,5 @@ import java.util.Map;
  */
 public class User {
     public static Database DB = new Database("users");
+    public static boolean isLoggedIn = false;
 }
